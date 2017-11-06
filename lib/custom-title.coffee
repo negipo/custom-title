@@ -86,7 +86,9 @@ module.exports =
 
 					if filePath or projectPath
 						atom.setRepresentedFilename(filePath ? projectPath)
-					document.title = title
+					# workaround for https://github.com/atom/atom/issues/15915
+					# document.title = title
+					document.getElementsByClassName("title-bar")[0].getElementsByClassName("title")[0].innerText = title
 				catch e
 					_updateWindowTitle.call(this)
 			else
